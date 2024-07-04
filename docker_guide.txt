@@ -1,0 +1,47 @@
+
+-> Afficher les conteneur en cours d'execution
+docker ps
+	-a == voir les conteneurs arretes
+
+-> Ajouter une nouvelle image docker
+	-> Rechercher une image
+		docker search IMAGE_NAME
+	-> Telecharger une image
+		docker pull IMAGE_NAME
+	-> Voir la liste des images
+		docker images
+
+-> Construire une image
+	docker build .		== execute le dockerfile
+			-t NAME		== ajoute un nom a l'image
+			--no-cache	== reconstruit l'image sans le cache
+
+-> Lancer un conteneur
+	docker run
+		-d 				== detach, permet de ne pas bloquer le terminal
+		-i				== interactive
+		--name NAME		== pour nommer le container
+		-p 8080:80		== defini le port a appeler pour atteindre le port 80 du conteneur
+		-D FOREGROUND	== permet de lancer le processus dans le conteneur et d’attacher la console au
+processus d’entrée classique.	(???)
+
+-> Arreter un conteneur
+	docker stop CONTAINER_NAME
+
+-> Effacer une image
+	docker rmi IMAGE_NAME
+
+
+NETWORK
+
+"Docker uses a software-based bridge network that allows containers connected to
+ the same bridge network to communicate while isolating them from other
+ containers not running in the same bridge network."
+
+-> Afficher la liste des networks
+	docker network ls
+
+-> Pour avoir plus d infos sur un network
+	docker network inspect NETWORK_NAME
+
+->

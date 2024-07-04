@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  nginx:
+    build: requirements/nginx/.
+    container_name: inception_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./web:/var/www/html
+    # restart: unless-stopped
+    # networks:
+      # - inception_network
+
+  # mariadb:
+  #   image: mariadb
+  #   build: requirements/mariadb/.
+  #   container_name: inception_mariadb
+  #   restart: unless-stopped
+  #   env_file: .env
+  #   volumes:
+  #     - mariadb_data:/var/lib/mariadb
+    # networks:
+    #   - inception_network
+
+  wordpress:
+    build: requirements/wordpress/.
+    container_name: inception_wordpress
+    volumes:
+      - ./web:/var/www/html
+    # expose:
+    #   - "9000"
+
+  #   image: wordpress
+  #   restart: unless-stopped
+  #   env_file: .env
+  #   environment:
+  #     - WORDPRESS_DB_HOST=mariadb:3306
+  #     - WORDPRESS_DB_USER=$MYSQL_USER
+  #     - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
+  #     - WORDPRESS_DB_NAME=inception_wordpress
+  #   # volumes:
+  #   depends_on:
+  #     - mariadb
+  #   ports:
+  #     - "9000:80"
+    # networks:
+    #   - inception_network
+
+# volumes:
+#   mariadb_data:
+
+# networks:
+#   inception_network:
+#     driver: bridge
