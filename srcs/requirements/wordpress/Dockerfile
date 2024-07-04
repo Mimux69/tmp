@@ -2,14 +2,17 @@ FROM	debian:bullseye
 
 RUN		apt update && apt upgrade && apt install -y \
 		php7.4-fpm \
-		php
+		php-mysqli \
+		curl
 
-RUN		mkdir /run/php -p
+RUN		mkdir /run/php
 
-COPY	www.conf	/etc/php/7.4/fpm/pool.d/.
-# RUN		chmod 777 /etc/php/7.4/fpm/pool.d/www.conf
+COPY	www.conf /etc/php/7.4/fpm/pool.d/.
+COPY	script.sh .
+RUN		chmod +x script.sh
 
 EXPOSE	9000
 
-# -F = run un background and ignore daemonize option for conf
-CMD	["php-fpm7.4", "-F"]
+CMD		["./script.sh"]
+
+# CMD	["php-fpm7.4", "-F"]

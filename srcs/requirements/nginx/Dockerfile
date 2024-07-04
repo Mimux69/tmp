@@ -1,14 +1,13 @@
-FROM	debian:latest
+FROM	debian:bullseye
 
 RUN		apt update && apt upgrade && apt install -y \
 		nginx
 
-COPY	default	/etc/nginx/site-available/.
+COPY	default etc/nginx/nginx.conf
 
-RUN		chmod 777 /etc/nginx/site-available/default
-
-# ADD		docker/nginx.conf	/etc/nginx/nginx.conf \
-		# docker/www/			/var/www/
+RUN		mkdir -p /var/www/html
+RUN		chown -R www-data:www-data /var/www/html
+RUN		chmod -R 755 /var/www/html
 
 EXPOSE	8080
 

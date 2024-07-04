@@ -1,10 +1,11 @@
-FROM	debian:latest
+FROM	debian:bullseye
 
-RUN		apt-get update && apt-get -y upgrade \
-		apt-get install -y mariadb-server
+RUN		apt update && apt upgrade && apt install -y \
+		mariadb-server
 
-ADD		tools/my.cnf	/etx/mysql/my.cnf
+COPY	50-server.cnf /etc/mysql/mariadb.conf.d/.
+COPY	init.sql	/etc/mysql/init.sql
 
-EXPOSE	3306
+RUN		mkdir /run/mysqld
 
-CMD		["mysql"]
+CMD		["mysqld"]
