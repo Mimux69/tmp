@@ -1,6 +1,6 @@
 FROM	debian:bullseye
 
-RUN		apt update && apt upgrade && apt install -y \
+RUN		apt update && apt upgrade -y && apt install -y \
 		php7.4-fpm \
 		php-mysqli \
 		curl

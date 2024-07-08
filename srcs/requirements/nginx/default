@@ -6,14 +6,13 @@ events
 
 http
 {
-
 	server {
 		listen 80 default_server;
 		listen [::]:80 default_server;
 
 		root /var/www/html;
 
-		index index.php index.html index.htm index.nginx-debian.html;
+		index index.nginx-debian.html index.php index.html index.htm ;
 
 		server_name _;
 
